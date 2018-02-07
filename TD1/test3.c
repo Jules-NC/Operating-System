@@ -8,7 +8,8 @@
 
 int main(int argc, char* argv[]){
 	int id = open("fichierTest.txt", 'r');
-	char* res = litDixCaracteres(id);
+	
+	char* res = litTexte(id);
 	printf(res);
 	
 	return 0;

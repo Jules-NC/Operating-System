@@ -4,7 +4,7 @@
 
 #include "gestionFichiers.h"
 
-const int TAILLEBUF = 10;
+#define TAILLEBUF 100
 char* litDixCaracteres(int descripteur){
 	char* res = malloc(11*sizeof(char));
 	read(descripteur, res, 11);
@@ -14,15 +14,15 @@ char* litDixCaracteres(int descripteur){
 
 char* litLigne(int descripteur){
 	char* texte = malloc(TAILLEBUF*sizeof(char));
-	char* buffer = malloc(TAILLEBUF*sizeof(char));
 	int i = 0;
 
-	read(descripteur, texte, TAILLEBUF);
-	while(texte[i] != '\n' || i<TAILLEBUF){
-		buffer[i] = texte[i]
+	while(i<TAILLEBUF){
+		read(descripteur, texte+i, 1);
+		if(texte[i] == '\n'){
+			texte[i] = '\0';
+			return texte;
+		}
 		i++;
 	}
-	buffer[i] = '\0';
-	
-	return buffer;
+	return NULL;
 }
